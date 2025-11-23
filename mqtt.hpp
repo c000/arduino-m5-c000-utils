@@ -19,6 +19,13 @@ public:
 
   bool connect() { return client.connect(clientId); }
 
+  void update() {
+    if (!client.connected()) {
+      this->connect();
+    }
+    client.loop();
+  }
+
   bool publish(const char *topic, const char *payload) {
     return client.publish(topic, payload);
   }
